@@ -5,10 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Srilankan Wela</title>
 
-    <!-- WhatsApp සහ සමාජ මාධ්‍ය සඳහා Open Graph (OG) Tags -->
+    <!-- Open Graph (OG) Tags for WhatsApp & Social Media Preview -->
     <meta property="og:type" content="website">
     <meta id="og_title" property="og:title" content="Srilankan Wela">
     <meta id="og_description" property="og:description" content="Watch the latest trending videos on Srilankan Wela.">
+    <!-- WhatsApp Preview එක සඳහා ඔබේ Thumbnail Photo එකෙහි Direct URL එක මෙතැනට දාන්න -->
     <meta id="og_image" property="og:image" content="https://yourdomain.com/default-thumbnail.jpg">
     <meta id="og_url" property="og:url" content="">
 
@@ -191,15 +192,18 @@
 
             if (data.thumbnail_url) {
                 setThumbnail(data.thumbnail_url);
-                // Admin App එකෙන් වෙනස් කරන Thumbnail එක WhatsApp වල පෙන්වීමට OG Image එකද ස්වයංක්‍රීයව update වේ
-                document.getElementById('og_image').setAttribute('content', data.thumbnail_url);
-                document.getElementById('tw_image').setAttribute('content', data.thumbnail_url);
+                // Dynamic Page Updates
+                const ogImg = document.getElementById('og_image');
+                const twImg = document.getElementById('tw_image');
+                if (ogImg) ogImg.setAttribute('content', data.thumbnail_url);
+                if (twImg) twImg.setAttribute('content', data.thumbnail_url);
             }
             if (data.video_title) {
                 document.getElementById("txt_video_title").textContent = data.video_title;
-                // Admin App එකෙන් වෙනස් කරන Title එක WhatsApp වල පෙන්වීමට OG Title එකද update වේ
-                document.getElementById('og_title').setAttribute('content', data.video_title);
-                document.getElementById('tw_title').setAttribute('content', data.video_title);
+                const ogTitle = document.getElementById('og_title');
+                const twTitle = document.getElementById('tw_title');
+                if (ogTitle) ogTitle.setAttribute('content', data.video_title);
+                if (twTitle) twTitle.setAttribute('content', data.video_title);
             }
             if (data.duration) document.getElementById("txt_video_duration").textContent = data.duration;
             if (data.views) document.getElementById("txt_views").textContent = "▶  " + data.views;
