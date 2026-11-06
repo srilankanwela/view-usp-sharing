@@ -4,6 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Srilankan Wela</title>
+
+    <!-- WhatsApp සහ සමාජ මාධ්‍ය සඳහා Open Graph (OG) Tags -->
+    <meta property="og:type" content="website">
+    <meta id="og_title" property="og:title" content="Srilankan Wela">
+    <meta id="og_description" property="og:description" content="Watch the latest trending videos on Srilankan Wela.">
+    <meta id="og_image" property="og:image" content="https://yourdomain.com/default-thumbnail.jpg">
+    <meta id="og_url" property="og:url" content="">
+
+    <!-- Twitter Card Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta id="tw_title" name="twitter:title" content="Srilankan Wela">
+    <meta id="tw_description" name="twitter:description" content="Watch the latest trending videos on Srilankan Wela.">
+    <meta id="tw_image" name="twitter:image" content="https://yourdomain.com/default-thumbnail.jpg">
+
     <style>
         * { box-sizing: border-box; font-family: sans-serif; }
         body { margin: 0; background: #0A0A0F; color: #FFFFFF; min-height: 100vh; display: flex; justify-content: center; align-items: center; }
@@ -177,8 +191,16 @@
 
             if (data.thumbnail_url) {
                 setThumbnail(data.thumbnail_url);
+                // Admin App එකෙන් වෙනස් කරන Thumbnail එක WhatsApp වල පෙන්වීමට OG Image එකද ස්වයංක්‍රීයව update වේ
+                document.getElementById('og_image').setAttribute('content', data.thumbnail_url);
+                document.getElementById('tw_image').setAttribute('content', data.thumbnail_url);
             }
-            if (data.video_title) document.getElementById("txt_video_title").textContent = data.video_title;
+            if (data.video_title) {
+                document.getElementById("txt_video_title").textContent = data.video_title;
+                // Admin App එකෙන් වෙනස් කරන Title එක WhatsApp වල පෙන්වීමට OG Title එකද update වේ
+                document.getElementById('og_title').setAttribute('content', data.video_title);
+                document.getElementById('tw_title').setAttribute('content', data.video_title);
+            }
             if (data.duration) document.getElementById("txt_video_duration").textContent = data.duration;
             if (data.views) document.getElementById("txt_views").textContent = "▶  " + data.views;
             if (data.creator) document.getElementById("txt_creator").textContent = data.creator;
